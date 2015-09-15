@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC 
+"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" 
+"http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+
+	<form-beans>
+	    <form-bean name="helloWorldForm" type="form.HelloWorldForm"/>
+	    <form-bean name="LoginForm" type="org.apache.struts.action.DynaActionForm">
+			<form-property type="java.lang.String" name="userName"/> 
+			<form-property type="java.lang.String" name="password"/>
+		</form-bean>
+	</form-beans>
+
+	<action-mappings>
+		<action  name="LoginForm" path="/Login" type="action.LoginAction">
+       		 <forward name="success" path="/postLogin.jsp" />
+		 </action>
+	   <action path="/helloWorld" type="action.HelloWorldAction" name="helloWorldForm">
+		<forward name="success" path="/HelloWorld.jsp"/>
+		</action>
+	</action-mappings>
+	
+</struts-config>
