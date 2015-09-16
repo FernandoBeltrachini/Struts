@@ -1,31 +1,23 @@
 package dataBaseConnections;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.List;
+
+import org.hibernate.Session;
 
 import dto.User;
+import utils.HibernateUtil;
 
 public class UserConnections {
-	
-	
-	public boolean validUser(User user){
-		try {
-			if (ConnectionSingleton.getInstance() != null) {
-				PreparedStatement p = ConnectionSingleton.getInstance().con.prepareStatement("SELECT COUNT(*) FROM USER where username=? AND password=?");
-				p.setString(1, user.getUserName());
-				p.setString(2, user.getPassword());
-				ResultSet rs = p.executeQuery();
-				rs.next();
-				if (rs.getInt(1) > 0)
-					return true;
-				}
+
+	public boolean validUser(User user) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		List<User> u = session.createCriteria(User.class).list();
+		for (int i = 0;i< u.size() ; i++){
+			User actual = u.get(i);
+			if ((actual.getUserName().equals(user.getUserName())) && actual.getPassword().equals(user.getPassword()))
+				return true;
+			
 		}
-		
-		catch (SQLException e){
-			return false;
-		}
-		
 		return false;
 	}
 
