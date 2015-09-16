@@ -16,6 +16,7 @@
 	<action-mappings>
 		<action  name="LoginForm" path="/Login" type="action.LoginAction">
        		 <forward name="success" path="/postLogin.jsp" />
+       		 <forward name="fail" path="/login.jsp" />
 		 </action>
 	   <action path="/helloWorld" type="action.HelloWorldAction" name="helloWorldForm">
 		<forward name="success" path="/HelloWorld.jsp"/>

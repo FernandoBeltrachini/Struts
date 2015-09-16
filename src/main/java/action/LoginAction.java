@@ -13,6 +13,9 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.DynaActionForm;
 
+import dataBaseConnections.UserConnections;
+import dto.User;
+
 public class LoginAction extends org.apache.struts.action.Action {
 
    
@@ -24,14 +27,14 @@ public class LoginAction extends org.apache.struts.action.Action {
         String userName = loginForm.get("userName").toString();
         String password = loginForm.get("password").toString();
     	
-		
-        if(userName.equals(password) )
+		UserConnections users = new UserConnections();
+        if(users.validUser(new User(userName,password)))
         {
             return mapping.findForward("success");
         }
         else
         {
-            return mapping.findForward("login");
+            return mapping.findForward("fail");
         }
         
     }
