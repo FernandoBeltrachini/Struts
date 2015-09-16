@@ -10,7 +10,7 @@ public class ConnectionSingleton {
 	Connection con = null;
 
 	String user = new String("root");
-	String password = new String("pampita");
+	String password = new String("root");
 	String jdbcUrlConnection = new String("jdbc:mysql://localhost:3306/struts");
 
 	protected ConnectionSingleton() {
