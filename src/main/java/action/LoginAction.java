@@ -28,6 +28,7 @@ public class LoginAction extends org.apache.struts.action.Action {
         String password = loginForm.get("password").toString();
     	
 		UserConnections users = new UserConnections();
+		
         if(users.validUser(new User(userName,password)))
         {
             return mapping.findForward("success");
